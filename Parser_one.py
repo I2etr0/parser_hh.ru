@@ -10,8 +10,8 @@ baseUrl = 'https://perm.hh.ru/search/vacancy?text=python&only_with_salary=false&
 
 
 def hhParse(baseUrl, headers):
-    jobs = []   # Создаем список для заполнения его вакансиями
-    urls = []   # Создаем список для заполнения его урлами
+    jobs = []  # Создаем список для заполнения его вакансиями
+    urls = []  # Создаем список для заполнения его урлами
     urls.append(baseUrl)
     session = requests.Session()
     request = session.get(baseUrl, headers=headers)
@@ -33,11 +33,15 @@ def hhParse(baseUrl, headers):
         divs = soup.find_all('div', attrs={'data-qa': 'vacancy-serp__vacancy'})
         for div in divs:
             try:
-                title = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'}).text    # Выборка заголовков работ
-                href = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'})['href']      # Выборка ссылок на работу
-                company = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-employer'}).text       # Выборка компаний-поисковиков
-                text1 = div.find('div', attrs={'data-qa': 'vacancy-serp__vacancy_snippet_responsibility'}).text     # Выборка что нужно делать
-                text2 = div.find('div', attrs={'data-qa': 'vacancy-serp__vacancy_snippet_requirement'}).text        # ВЫборка опыта
+                title = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'}).text  # Выборка заголовков работ
+                href = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'})[
+                    'href']  # Выборка ссылок на работу
+                company = div.find('a', attrs={
+                    'data-qa': 'vacancy-serp__vacancy-employer'}).text  # Выборка компаний-поисковиков
+                text1 = div.find('div', attrs={
+                    'data-qa': 'vacancy-serp__vacancy_snippet_responsibility'}).text  # Выборка что нужно делать
+                text2 = div.find('div',
+                                 attrs={'data-qa': 'vacancy-serp__vacancy_snippet_requirement'}).text  # ВЫборка опыта
                 content = 'Требования: ' + text1 + '\n' + 'Опыт: ' + text2
                 jobs.append({
                     'title': title,
@@ -46,7 +50,7 @@ def hhParse(baseUrl, headers):
                     'content': content})
             except:
                 pass
-        print(len(jobs)) # Сколько работ нашлось
+        print(len(jobs))  # Сколько работ нашлось
 
     else:
         print("ERROR or Done! " + str(request.status_code))
@@ -59,6 +63,7 @@ def fileWriter(jobs):
         aPen.writerow(('Название вакансии', 'URL', 'Название компании', 'Описание'))
         for job in jobs:
             aPen.writerow((job['title'], job['href'], job['company'], job['content']))
+
 
 jobs = hhParse(baseUrl, headers)
 fileWriter(jobs)
