@@ -47,7 +47,7 @@ def hhParse(baseUrl, headers):
             except:
                 pass
         print(len(jobs)) # Сколько работ нашлось
-        print('Hello, Parser')
+
     else:
         print("ERROR or Done! " + str(request.status_code))
     return jobs
