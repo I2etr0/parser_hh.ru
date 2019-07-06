@@ -54,7 +54,7 @@ def hhParse(baseUrl, headers):
 
 
 def fileWriter(jobs):
-    with open('parsedJobs.cvs', 'w') as file:  # Работа с файлом .cvs 'w' означает, что файл постоянно записывается
+    with open('parsedJobs.csv', 'w') as file:  # Работа с файлом .cvs 'w' означает, что файл постоянно записывается
         aPen = csv.writer(file)
         aPen.writerow(('Название вакансии', 'URL', 'Название компании', 'Описание'))
         for job in jobs:
