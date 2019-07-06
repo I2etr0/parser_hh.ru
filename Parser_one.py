@@ -47,6 +47,7 @@ def hhParse(baseUrl, headers):
             except:
                 pass
         print(len(jobs)) # Сколько работ нашлось
+        print('Hello, Parser')
     else:
         print("ERROR or Done! " + str(request.status_code))
     return jobs
@@ -58,7 +59,6 @@ def fileWriter(jobs):
         aPen.writerow(('Название вакансии', 'URL', 'Название компании', 'Описание'))
         for job in jobs:
             aPen.writerow((job['title'], job['href'], job['company'], job['content']))
-
 
 jobs = hhParse(baseUrl, headers)
 fileWriter(jobs)
