@@ -12,7 +12,7 @@ def hh_parse(base_url, headers):
     if request.status_code == 200:
         soup = bs(request.content, 'html.parser')
         divs = soup.find_all('div', attrs={'data-qa': 'vacancy-serp__vacancy'})
-        output_file = open(out, 'a')
+        output_file = open(out, 'w')
         for div in divs:
             title = div.find('a', attrs={'data-qa': 'vacancy-serp__vacancy-title'}).text
             compensation = div.find('div', attrs={'data-qa': 'vacancy-serp__vacancy-compensation'})
