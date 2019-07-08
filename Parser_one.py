@@ -1,10 +1,12 @@
 import requests
 from bs4 import BeautifulSoup as bs
+import progressbar
 
 headers = {'accept': '*/*',
            'user-agent': 'Mozilla/5.0(X11;Linux x86_64...)Geco/20100101 Firefox/60.0'}
 base_url = 'https://hh.ru/search/vacancy?search_period=3&text=python&area=1&page=0'
 out = 'output.txt'
+
 
 def hh_parse(base_url, headers):
     session = requests.session()
@@ -36,3 +38,5 @@ def hh_parse(base_url, headers):
 
 
 hh_parse(base_url, headers)
+
+input('Press ENTER to exit')
