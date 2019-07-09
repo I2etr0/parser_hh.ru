@@ -1,12 +1,5 @@
 import requests
 from bs4 import BeautifulSoup as bs
-# import progressbar
-# import tqdm
-# import time
-#
-# # for i in tqdm.tqdm(range(1000)):
-# #     time.sleep(0.01)
-# #     Скрипт прогрессбара
 
 headers = {'accept': '*/*',
            'user-agent': 'Mozilla/5.0(X11;Linux x86_64...)Geco/20100101 Firefox/60.0'}
