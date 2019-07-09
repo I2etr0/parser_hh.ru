@@ -1,12 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
-# import progressbar
-# import tqdm
-# import time
-#
-# # for i in tqdm.tqdm(range(1000)):
-# #     time.sleep(0.01)
-# #     Скрипт прогрессбара
+from tqdm import tqdm
+
 
 headers = {'accept': '*/*',
            'user-agent': 'Mozilla/5.0(X11;Linux x86_64...)Geco/20100101 Firefox/60.0'}
@@ -37,12 +32,13 @@ def hh_parse(base_url, headers):
             output_file.write(all)
             print(all)
         output_file.close()
-
-
     else:
         print('ERROR')
 
+for base_urls in tqdm(base_url):
+    hh_parse(base_url, headers)
 
-hh_parse(base_url, headers)
+
+# hh_parse(base_url, headers)
 
 input('Press ENTER to exit')
