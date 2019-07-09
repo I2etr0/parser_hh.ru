@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup as bs
 from tqdm import tqdm
 
-
 headers = {'accept': '*/*',
            'user-agent': 'Mozilla/5.0(X11;Linux x86_64...)Geco/20100101 Firefox/60.0'}
 base_url = 'https://hh.ru/search/vacancy?search_period=3&text=python&area=1&page=0'
@@ -35,10 +34,8 @@ def hh_parse(base_url, headers):
     else:
         print('ERROR')
 
+
 for base_urls in tqdm(base_url):
     hh_parse(base_url, headers)
-
-
-# hh_parse(base_url, headers)
 
 input('Press ENTER to exit')
